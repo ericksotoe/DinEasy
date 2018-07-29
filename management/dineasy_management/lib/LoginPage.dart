@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:dineasy_management/StatusPage.dart';
 
 class LoginPage extends StatefulWidget {
+  static String tag = 'login-page';
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -8,7 +10,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
 
   void pressedLogin() {
-
+    Navigator.of(context).pushNamed(StatusPage.tag);
   }
 
   void pressedRegister() {
