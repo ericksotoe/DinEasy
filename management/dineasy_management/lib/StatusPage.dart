@@ -102,11 +102,12 @@ class StatusPage extends StatelessWidget {
         ]),
       ),
       child: ListView(
-        children: <Widget>[name, title, number, estimateText, customers],
+        children: <Widget>[title, number, estimateText, customers],
       ),
     );
 
     return Scaffold(
+      appBar: name,
       body: body,
       bottomNavigationBar: navigationBar,
     );
