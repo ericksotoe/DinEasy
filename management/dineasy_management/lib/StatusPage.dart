@@ -40,13 +40,8 @@ class StatusPage extends StatelessWidget {
     );
 
     final statusNav = BottomNavigationBarItem(
-      icon: Icon(Icons.history),
+      icon: Icon(Icons.timeline),
       title: Text("Status"),
-    );
-
-    final historyNav = BottomNavigationBarItem(
-      icon: Icon(Icons.history),
-      title: Text("History"),
 
     );
 
@@ -64,7 +59,7 @@ class StatusPage extends StatelessWidget {
 
     final navigationBar = BottomNavigationBar(
       currentIndex: 0,
-      items: [historyNav, menuNav, billNav],
+      items: [statusNav, menuNav, billNav],
       onTap: (int index) => print(index),
     );
 
