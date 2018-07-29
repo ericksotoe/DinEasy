@@ -29,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
       autofocus: false,
       decoration: InputDecoration(
         hintText: 'Please type in your email',
+        icon: new Icon(Icons.person),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32.0)
         ),
@@ -39,10 +40,13 @@ class _LoginPageState extends State<LoginPage> {
       autofocus: false,
       decoration: InputDecoration(
         hintText: 'Please type in your password',
+        icon: new Icon(Icons.lock),
+
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32.0)
         ),
       ),
+      obscureText: true,
     );
 
     final loginButton = Padding(
