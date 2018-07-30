@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
-class StatusPage extends StatelessWidget {
+class StatusPage extends StatefulWidget {
   static String tag = 'status-page';
+
+  @override
+  _StatusPage createState() => _StatusPage();
+}
+
+class _StatusPage extends State<StatusPage> {
 
   @override
   Widget build(BuildContext context) {
 
+    print("status");
     // TODO: calculate this based on number of people waiting
     var waitTime = 10;
 
     // TODO: link this to database
     var groupWaiting = 5;
 
-    final name = AppBar(
-      title: Text("Ultra Menya", style: TextStyle(fontSize: 25.0),),
-      automaticallyImplyLeading: false,
-      centerTitle: true,
-    );
+    var colors = [Colors.blue, Colors.red, Colors.green, Colors.yellow,
+    Colors.purple, Colors.grey, Colors.brown];
+    var random = Random();
 
     final title = Padding(
       padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
@@ -39,52 +45,28 @@ class StatusPage extends StatelessWidget {
         style: TextStyle(fontSize: 20.0),)
     );
 
-    final statusNav = BottomNavigationBarItem(
-      icon: Icon(Icons.timeline),
-      title: Text("Status"),
-
-    );
-
-    final menuNav = BottomNavigationBarItem(
-      icon: Icon(Icons.restaurant_menu),
-      title: Text("Menu"),
-
-    );
-
-    final billNav = BottomNavigationBarItem(
-      icon: Icon(Icons.monetization_on),
-      title: Text("Bill"),
-
-    );
-
-    final navigationBar = BottomNavigationBar(
-      currentIndex: 0,
-      items: [statusNav, menuNav, billNav],
-      onTap: (int index) => print(index),
-    );
-
     // TODO: populate data from database
     var customers = new Container(
       padding: new EdgeInsets.all(20.0),
       child: new Column(
         children: <Widget>[
           new CardLayout(
-            icon: Icons.verified_user,
-            name: "Mr. Soto",
+            color: colors[random.nextInt(colors.length)],
+            name: "Erick Soto",
             number: 5,
             type: "table",
             time: "09:00",
           ),
           new CardLayout(
-            icon: Icons.verified_user,
-            name: "Mr. Mui",
+            color: colors[random.nextInt(colors.length)],
+            name: "Jasper Mui",
             number: 3,
             type: "bar",
             time: "21:00",
           ),
           new CardLayout(
-            icon: Icons.verified_user,
-            name: "Mr. Mui",
+            color: colors[random.nextInt(colors.length)],
+            name: "Jasper Mui",
             number: 3,
             type: "bar",
             time: "21:00",
@@ -107,18 +89,16 @@ class StatusPage extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: name,
       body: body,
-      bottomNavigationBar: navigationBar,
     );
   }
 }
 
 class CardLayout extends StatelessWidget {
 
-  CardLayout({this.icon, this.name, this.number, this.type, this.time});
+  CardLayout({this.color, this.name, this.number, this.type, this.time});
 
-  final IconData icon;
+  final Color color;
   final String name;
   final int number;
   final String type;
@@ -132,8 +112,11 @@ class CardLayout extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             new ListTile(
-              leading: new Icon(icon, size: 40.0, color: Colors.grey),
-              title: new Text(name, style: new TextStyle(fontSize: 20.0),),
+              leading: CircleAvatar(
+                backgroundColor: color,
+                child: new Text(name[0], style: TextStyle(color: Colors.white, fontSize: 18.0),),
+              ),
+              title: Text(name, style: new TextStyle(fontSize: 20.0),),
               subtitle: Text('$number people reserved $type at $time'),
             ),
             new ButtonTheme.bar(

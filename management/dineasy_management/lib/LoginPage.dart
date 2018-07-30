@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dineasy_management/StatusPage.dart';
+import 'package:dineasy_management/HomePage.dart';
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -10,7 +10,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
 
   void pressedLogin() {
-    Navigator.of(context).pushNamed(StatusPage.tag);
+    Navigator.of(context).pushNamed(HomePage.tag);
   }
 
   void pressedRegister() {
