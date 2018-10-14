@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class BillPage extends StatefulWidget {
+class TablePage extends StatefulWidget {
   static String tag = 'bill-page';
 
   @override
-  _BillPage createState() => _BillPage();
+  _TablePage createState() => _TablePage();
 }
 
-class _BillPage extends State<BillPage> {
+class _TablePage extends State<TablePage> {
 
   @override
   Widget build(BuildContext context) {

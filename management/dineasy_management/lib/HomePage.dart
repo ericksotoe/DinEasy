@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:dineasy_management/StatusPage.dart';
 import 'package:dineasy_management/MenuPage.dart';
-import 'package:dineasy_management/BillPage.dart';
+import 'package:dineasy_management/TablePage.dart';
 
 class HomePage extends StatefulWidget {
   static String tag = 'home-page';
@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
 
   StatusPage statusPage;
   MenuPage menuPage;
-  BillPage billPage;
+  TablePage tablePage;
   List<Widget> pages;
   Widget currentPage;
 
@@ -38,8 +38,8 @@ class _HomePageState extends State<HomePage> {
   );
 
   var billNav = BottomNavigationBarItem(
-    icon: Icon(Icons.monetization_on),
-    title: Text("Bill"),
+    icon: Icon(Icons.people),
+    title: Text("Customers"),
   );
 
   @override
@@ -48,9 +48,9 @@ class _HomePageState extends State<HomePage> {
 
     statusPage = StatusPage();
     menuPage = MenuPage();
-    billPage = BillPage();
+    tablePage = TablePage();
 
-    pages = [statusPage, menuPage, billPage,];
+    pages = [statusPage, menuPage, tablePage,];
 
     currentPage = statusPage;
   }

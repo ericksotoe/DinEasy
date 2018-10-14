@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dineasy_management/LoginPage.dart';
 import 'package:dineasy_management/HomePage.dart';
 import 'package:dineasy_management/MenuPage.dart';
-import 'package:dineasy_management/BillPage.dart';
+import 'package:dineasy_management/TablePage.dart';
 
 void main() => runApp(new MyApp());
 
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       LoginPage.tag: (context) => LoginPage(),
       HomePage.tag: (context) => HomePage(),
       MenuPage.tag: (context) => MenuPage(),
-      BillPage.tag: (context) => BillPage(),
+      TablePage.tag: (context) => TablePage(),
     };
 
     return MaterialApp(
