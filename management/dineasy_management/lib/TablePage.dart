@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'DataModels/TableStatus.dart';
 
 class TablePage extends StatefulWidget {
   static String tag = 'bill-page';
@@ -7,35 +8,51 @@ class TablePage extends StatefulWidget {
   _TablePage createState() => _TablePage();
 }
 
+List _sampleData() {
+  var tableList = List<TableStatus>();
+  for (int i = 1; i <= 5; i++) {
+    tableList.add(TableStatus(i, "Mr. Erick Soto",
+        ["Peking Duck", "Dragon Roll", "Takoyaki", "Fried Rice"]));
+  }
+  return tableList;
+}
+
+// TODO: might create a Util helper => createWidgetFromList
+List _createTableButtonFromList(List tableList) {
+  var buttonsList = List<FlatButton>();
+  for (var tableStatus in tableList) {
+    buttonsList.add(FlatButton(
+        padding: EdgeInsets.all(0.0),
+        onPressed: () => print("on press"),
+        child: TableCard(tableStatus)));
+  }
+  return buttonsList;
+}
+
+List _createTextFromList(List textList) {
+  var textsList = List<Text>();
+  for (var text in textList) {
+    textsList.add(Text(text));
+  }
+  return textsList;
+}
+
 class _TablePage extends State<TablePage> {
+  var tableList;
+
   @override
   Widget build(BuildContext context) {
-    print("bill");
+    print("Created Table Page");
+
+    // TODO: replace this with data base access
+    tableList = _sampleData();
 
     final body = Container(
       margin: EdgeInsets.all(20.0),
       decoration:
           new BoxDecoration(border: new Border.all(color: Colors.black)),
       child: ListView(
-        children: <Widget>[
-          FlatButton(
-              padding: EdgeInsets.all(0.0),
-              onPressed: () => print("on press"),
-              child: TableCard(1, "Mr. Erick Soto",
-                  ["Peking Duck", "Dragon Roll", "Takoyaki"])),
-          TableCard(
-              1, "Mr. Erick Soto", ["Peking Duck", "Dragon Roll", "Takoyaki"]),
-          TableCard(
-              1, "Mr. Erick Soto", ["Peking Duck", "Dragon Roll", "Takoyaki"]),
-          TableCard(
-              1, "Mr. Erick Soto", ["Peking Duck", "Dragon Roll", "Takoyaki"]),
-          TableCard(
-              1, "Mr. Erick Soto", ["Peking Duck", "Dragon Roll", "Takoyaki"]),
-          TableCard(
-              1, "Mr. Erick Soto", ["Peking Duck", "Dragon Roll", "Takoyaki"]),
-          TableCard(
-              1, "Mr. Erick Soto", ["Peking Duck", "Dragon Roll", "Takoyaki"]),
-        ],
+        children: _createTableButtonFromList(tableList)
       ),
     );
 
@@ -46,11 +63,9 @@ class _TablePage extends State<TablePage> {
 }
 
 class TableCard extends StatelessWidget {
-  var tableNumber;
-  var customerName;
-  var dishesList;
+  TableStatus tableStatus;
 
-  TableCard(this.tableNumber, this.customerName, this.dishesList);
+  TableCard(this.tableStatus);
 
   @override
   Widget build(BuildContext context) {
@@ -61,23 +76,16 @@ class TableCard extends StatelessWidget {
             ListTile(
                 leading: CircleAvatar(
                     backgroundColor: Colors.blue,
-                    child: Text(tableNumber.toString(),
+                    child: Text(tableStatus.tableNumber.toString(),
                         style: TextStyle(color: Colors.black, fontSize: 18.0))),
-                title: Text(customerName, style: TextStyle(fontSize: 20.0))
+                title: Text(tableStatus.customerName, style: TextStyle(fontSize: 20.0))
                 // TODO: might want to put something in subtitle?
                 ),
             Container(
               margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 15.0),
               height: 80.0,
               child: ListView(
-                children: <Widget>[
-                  const Text('Peking Duck'),
-                  const Text('Dragon Roll'),
-                  const Text('Takoyaki'),
-                  const Text('Takoyaki'),
-                  const Text('Takoyaki'),
-                  const Text('Takoyaki'),
-                ],
+                children: _createTextFromList(tableStatus.orderedList),
               ),
             )
           ],
